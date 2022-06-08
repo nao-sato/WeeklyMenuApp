@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialize()
@@ -35,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             binding.F1,
             binding.F2,
             binding.F3,
-            binding.F4
+            binding.F4,
+            binding.phone
         )
 
         val animList : List<Int> = listOf(
@@ -43,21 +42,23 @@ class MainActivity : AppCompatActivity() {
             R.anim.anim_foods1,
             R.anim.anim_foods2,
             R.anim.anim_foods3,
-            R.anim.anim_foods4
+            R.anim.anim_foods4,
+            R.anim.anim_foods5,
+            R.anim.anim_phone1
         )
 
-        setAnim(imageList[0],R.anim.anim_apple1)
+        setAnim(imageList[0], R.anim.anim_apple1)
 
         for (i in 1..4){
-            setAnim(imageList[i],animList[i])
+            setAnim(imageList[i], animList[i])
         }
+
+        setAnim(imageList[5], animList[6])
     }
 
     private fun setAnim(image:View, anim:Int){
         image.startAnimation(AnimationUtils.loadAnimation(this, anim))
     }
-
-
 }
 
 
