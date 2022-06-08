@@ -2,6 +2,8 @@ package com.example.weeklymenuapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.example.weeklymenuapp.databinding.ActivityMainBinding
@@ -9,6 +11,8 @@ import com.example.weeklymenuapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +30,34 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAnimation(){
 
-        binding.apple.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_apple1))
+        val imageList : List<View> = listOf(
+            binding.apple,
+            binding.F1,
+            binding.F2,
+            binding.F3,
+            binding.F4
+        )
 
-        binding.F1.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_foods1))
+        val animList : List<Int> = listOf(
+            R.anim.anim_apple1,
+            R.anim.anim_foods1,
+            R.anim.anim_foods2,
+            R.anim.anim_foods3,
+            R.anim.anim_foods4
+        )
 
-        binding.F2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_foods2))
+        setAnim(imageList[0],R.anim.anim_apple1)
 
-        binding.F3.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_foods3))
-
-        binding.F4.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_foods4))
+        for (i in 1..4){
+            setAnim(imageList[i],animList[i])
+        }
     }
+
+    private fun setAnim(image:View, anim:Int){
+        image.startAnimation(AnimationUtils.loadAnimation(this, anim))
+    }
+
+
 }
 
 
