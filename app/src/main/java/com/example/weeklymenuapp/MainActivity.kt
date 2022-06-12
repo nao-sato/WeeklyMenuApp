@@ -1,10 +1,12 @@
 package com.example.weeklymenuapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.graphics.Path
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.weeklymenuapp.databinding.ActivityMainBinding
 
@@ -26,9 +28,9 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
     }
 
-    private fun initAnimation(){
+    private fun initAnimation() {
 
-        val imageList : List<View> = listOf(
+        val im: List<View> = listOf(
             binding.apple,
             binding.F1,
             binding.F2,
@@ -37,28 +39,17 @@ class MainActivity : AppCompatActivity() {
             binding.phone
         )
 
-        val animList : List<Int> = listOf(
-            R.anim.anim_apple1,
-            R.anim.anim_foods1,
-            R.anim.anim_foods2,
-            R.anim.anim_foods3,
-            R.anim.anim_foods4,
-            R.anim.anim_foods5,
-            R.anim.anim_phone1
-        )
+        val startAnim = MainAnimation(im[0],im[1],im[2],im[3],im[4],im[5])
 
-        setAnim(imageList[0], R.anim.anim_apple1)
-
-        for (i in 1..4){
-            setAnim(imageList[i], animList[i])
+        AnimatorSet().apply {
+            play(startAnim.animSet)
+            start()
         }
-
-        setAnim(imageList[5], animList[6])
-    }
-
-    private fun setAnim(image:View, anim:Int){
-        image.startAnimation(AnimationUtils.loadAnimation(this, anim))
     }
 }
+
+
+
+
 
 
