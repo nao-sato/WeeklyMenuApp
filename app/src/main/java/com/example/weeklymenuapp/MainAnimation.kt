@@ -1,5 +1,6 @@
 package com.example.weeklymenuapp
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.graphics.Path
@@ -9,22 +10,54 @@ import android.view.animation.DecelerateInterpolator
 
 class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: View) {
 
-    val animSet = AnimatorSet().apply {
-        play(Apple(apple).up).before(Apple(apple).down)
-        play(Foods(f1).alphaAppear).after(Apple(apple).down)
-//        play(Foods(f1).alphaAppear).with(Foods(f3).alphaAppear)
-//        play(Foods(f1).alphaAppear).with(Foods(f4).alphaAppear)
-//        play(Phone(phone).up).after(Foods(f4).alphaAppear)
-//        play(Foods(f1).circle).after(Phone(phone).up)
-//        play(Foods(f1).circle).with(Foods(f1).rotation).with(Foods(f1).alphaDisappear)
-//        play(Foods(f1).circle).with(Foods(f2).circle).with(Foods(f2).rotation).with(Foods(f2).alphaDisappear)
-//        play(Foods(f1).circle).with(Foods(f3).circle).with(Foods(f3).rotation).with(Foods(f3).alphaDisappear)
-//        play(Foods(f1).circle).with(Foods(f4).circle).with(Foods(f4).rotation).with(Foods(f4).alphaDisappear)
-//        play(Phone(phone).scaleUp_X).after(Foods(f4).alphaDisappear)
-//        play(Phone(phone).scaleUp_X).with(Phone(phone).scaleUp_Y)
-//        play(Phone(phone).scaleUp_X).with(Apple(apple).scaleUp_X).with(Apple(apple).scaleUp_Y)
-//            .with(Apple(apple).move_X).with(Apple(apple).move_Y)
+
+
+    private val foodAppear = AnimatorSet().apply {
+        playTogether(
+            Foods(f1).alphaAppear,
+            Foods(f2).alphaAppear,
+            Foods(f3).alphaAppear,
+            Foods(f4).alphaAppear
+            )
     }
+
+    private val foodGather = AnimatorSet().apply {
+        playTogether(
+            Foods(f1).circle,
+//            Foods(f2).circle,
+//            Foods(f3).circle,
+//            Foods(f4).circle,
+//            Foods(f1).rotation,
+//            Foods(f2).rotation,
+//            Foods(f3).rotation,
+//            Foods(f4).rotation,
+//            Foods(f1).alphaDisappear,
+//            Foods(f2).alphaDisappear,
+//            Foods(f3).alphaDisappear,
+//            Foods(f4).alphaDisappear
+        )
+    }
+
+    val scaleAllUp = AnimatorSet().apply {
+        playTogether(
+            Phone(phone).scaleUp_X,
+            Phone(phone).scaleUp_Y,
+            Apple(apple).scaleUp_X,
+            Apple(apple).scaleUp_Y,
+            Apple(apple).move_X,
+            Apple(apple).move_Y
+        )
+    }
+
+    var animList = listOf(
+        Apple(apple).up,
+        Apple(apple).down,
+        foodAppear,
+        Phone(phone).up,
+        foodGather,
+//        scaleAllUp
+        )
+
 
     inner class Apple(image: View) {
 
@@ -67,7 +100,7 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
         }
 
         val alphaAppear : ObjectAnimator = ObjectAnimator.ofFloat(image, "alpha", 0f, 1f).apply {
-            duration = 20
+            duration = 2000
         }
 
         val circle : ObjectAnimator = ObjectAnimator.ofFloat(image, View.X, View.Y, path).apply {
@@ -85,7 +118,7 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
 
     inner class Phone(image: View) {
 
-        val up : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationX", -200f, 1000f).apply {
+        val up : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationY", 1000f, -2000f).apply {
             duration = 1500
             interpolator = DecelerateInterpolator()
         }

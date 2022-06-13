@@ -30,7 +30,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAnimation() {
 
-        val im: List<View> = listOf(
+        val animatorSet = AnimatorSet()
+
+        val startAnim = MainAnimation(
             binding.apple,
             binding.F1,
             binding.F2,
@@ -39,12 +41,8 @@ class MainActivity : AppCompatActivity() {
             binding.phone
         )
 
-        val startAnim = MainAnimation(im[0],im[1],im[2],im[3],im[4],im[5])
-
-        AnimatorSet().apply {
-            play(startAnim.animSet)
-            start()
-        }
+        animatorSet.playSequentially(startAnim.animList)
+        animatorSet.start()
     }
 }
 
