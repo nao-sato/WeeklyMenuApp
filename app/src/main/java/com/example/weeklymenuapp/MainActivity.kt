@@ -1,11 +1,7 @@
 package com.example.weeklymenuapp
 
-import android.animation.Animator
 import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.graphics.Path
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.weeklymenuapp.databinding.ActivityMainBinding
@@ -32,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         val animatorSet = AnimatorSet()
 
-        val startAnim = MainAnimation(
+        val setImage = MainAnimation(
             binding.apple,
             binding.F1,
             binding.F2,
@@ -41,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             binding.phone
         )
 
-        animatorSet.playSequentially(startAnim.animList)
+        animatorSet.playSequentially(setImage.animList)
         animatorSet.start()
     }
 }
