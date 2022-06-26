@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/na_weekly"
-        android:icon="@drawable/weekly_menu"
-        android:title=""
+        android:icon="@drawable/icon_weekly"
+        android:title="@string/icon_weekly"
         />
 
     <item
         android:id="@+id/nav_list"
-        android:icon="@drawable/menu_list"
-        android:title=""
+        android:icon="@drawable/icon_list"
+        android:title="@string/icon_list"
         />
 
     <item
         android:id="@+id/memo"
-        android:icon="@drawable/memo"
-        android:title=""
+        android:icon="@drawable/icon_memo"
+        android:title="@string/icon_memo"
         />
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/search"
-        android:title=""
+        android:icon="@drawable/icon_search"
+        android:title="@string/icon_search"
         />
 
 </menu>

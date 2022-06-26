@@ -7,7 +7,7 @@ import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 
-class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: View) {
+class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: View, greet: View) {
 
     private val foodAppear = AnimatorSet().apply {
         playTogether(
@@ -39,6 +39,7 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
 
     private val scaleAllUp = AnimatorSet().apply {
         playTogether(
+            Greet(greet).alphaAppear,
             Phone(phone).scaleUp_X,
             Phone(phone).scaleUp_Y,
             Phone(phone).move_Y,
@@ -133,9 +134,14 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
             interpolator = AccelerateInterpolator()
         }
 
-        val move_Y = ObjectAnimator.ofFloat(image, "translationY", -2300F, -1900f).apply {
+        val move_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationY", -2300F, -1900f).apply {
             duration = 1000
             interpolator = DecelerateInterpolator()
         }
+    }
+
+    inner class Greet(image: View){
+
+        val alphaAppear: ObjectAnimator = ObjectAnimator.ofFloat(image, "alpha", 0F, 1F)
     }
 }
