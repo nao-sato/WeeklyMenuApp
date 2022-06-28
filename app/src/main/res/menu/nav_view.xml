@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/na_weekly"
+        android:id="@+id/nav_weekly"
         android:icon="@drawable/icon_weekly"
         android:title="@string/icon_weekly"
         />
 
     <item
-        android:id="@+id/nav_list"
+        android:id="@+id/nav_recipe"
         android:icon="@drawable/icon_list"
         android:title="@string/icon_list"
         />
 
     <item
-        android:id="@+id/memo"
+        android:id="@+id/nav_memo"
         android:icon="@drawable/icon_memo"
         android:title="@string/icon_memo"
         />
 
     <item
-        android:id="@+id/search"
+        android:id="@+id/nav_search"
         android:icon="@drawable/icon_search"
         android:title="@string/icon_search"
         />
