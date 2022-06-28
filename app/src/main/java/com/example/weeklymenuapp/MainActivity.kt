@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
             binding.F2,
             binding.F3,
             binding.F4,
-            binding.phone
+            binding.phone,
+            binding.greet,
+            binding.menuBottomNav,
         )
 
         animatorSet.playSequentially(setImage.animList)

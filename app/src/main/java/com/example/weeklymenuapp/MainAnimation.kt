@@ -6,8 +6,19 @@ import android.graphics.Path
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: View, greet: View) {
+class MainAnimation(
+    apple: View,
+    f1: View,
+    f2: View,
+    f3: View,
+    f4: View,
+    phone: View,
+    greet: View,
+    navi: BottomNavigationView,
+) {
 
     private val foodAppear = AnimatorSet().apply {
         playTogether(
@@ -40,6 +51,9 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
     private val scaleAllUp = AnimatorSet().apply {
         playTogether(
             Greet(greet).alphaAppear,
+            Greet(greet).scaleUp_X,
+            Greet(greet).scaleUp_Y,
+            Greet(greet).move_Y,
             Phone(phone).scaleUp_X,
             Phone(phone).scaleUp_Y,
             Phone(phone).move_Y,
@@ -55,8 +69,11 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
         Apple(apple).down,
         foodAppear,
         Phone(phone).up,
+        Greet(greet).up,
         foodGather,
-        scaleAllUp
+        scaleAllUp,
+        Greet(greet).alphaDisappear,
+        ObjectAnimator.ofFloat(navi, "alpha", 0f, 1f)
         )
 
 
@@ -72,20 +89,20 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
             interpolator = AccelerateInterpolator()
         }
 
-        val scaleUp_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleX", 80F).apply {
-            duration = 2000
+        val scaleUp_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleX", 4f).apply {
+            duration = 700
             interpolator = AccelerateInterpolator()
         }
-        val scaleUp_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleY", 80F).apply {
-            duration = 2000
+        val scaleUp_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleY", 4f).apply {
+            duration = 700
             interpolator = AccelerateInterpolator()
         }
 
-        val move_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationX", 0F,-2000f).apply {
+        val move_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationX", 0f,-2000f).apply {
             duration =600
         }
 
-        val move_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationY", 0F, 2000F).apply {
+        val move_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationY", 0f, 2000F).apply {
             duration = 600
         }
     }
@@ -124,13 +141,13 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
             interpolator = DecelerateInterpolator()
         }
 
-        val scaleUp_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleX", 80F).apply {
-            duration = 3000
+        val scaleUp_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleX", 4F).apply {
+            duration = 1000
             interpolator = AccelerateInterpolator()
         }
 
-        val scaleUp_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleY", 80F).apply {
-            duration = 3000
+        val scaleUp_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleY", 4F).apply {
+            duration = 1000
             interpolator = AccelerateInterpolator()
         }
 
@@ -142,6 +159,31 @@ class MainAnimation(apple: View, f1: View, f2: View, f3: View, f4: View, phone: 
 
     inner class Greet(image: View){
 
-        val alphaAppear: ObjectAnimator = ObjectAnimator.ofFloat(image, "alpha", 0F, 1F)
+        val alphaAppear: ObjectAnimator = ObjectAnimator.ofFloat(image, "alpha", 0F, 1F).apply {
+            duration = 2000
+        }
+        val alphaDisappear: ObjectAnimator = ObjectAnimator.ofFloat(image, "alpha", 1F, 0F).apply {
+            duration = 2000
+        }
+
+        val up : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationY", 600f, -2300f).apply {
+            duration = 1000
+            interpolator = DecelerateInterpolator()
+        }
+
+        val scaleUp_X : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleX", 4F).apply {
+            duration = 1000
+            interpolator = AccelerateInterpolator()
+        }
+
+        val scaleUp_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "scaleY", 4F).apply {
+            duration = 1000
+            interpolator = AccelerateInterpolator()
+        }
+
+        val move_Y : ObjectAnimator = ObjectAnimator.ofFloat(image, "translationY", -2300F, -1900f).apply {
+            duration = 1000
+            interpolator = DecelerateInterpolator()
+        }
     }
 }
