@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private fun initialize(){
         initBinding()
         initAnimation()
-        initBottomNavigation()
+//        initBottomNavigation()
     }
 
     private fun initBinding(){
@@ -41,23 +41,23 @@ class MainActivity : AppCompatActivity() {
             binding.F4,
             binding.phone,
             binding.greet,
-            binding.navView,
+//            binding.navView,
         )
 
         animatorSet.playSequentially(setImage.animList)
         animatorSet.start()
     }
 
-    private fun initBottomNavigation() {
-
-        val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_weekly, R.id.nav_recipe, R.id.nav_memo, R.id.nav_search
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
-    }
+//    private fun initBottomNavigation() {
+//
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        val appBarConfiguration = AppBarConfiguration(setOf(
+//                R.id.nav_weekly, R.id.nav_recipe, R.id.nav_memo, R.id.nav_search
+//            )
+//        )
+//        setupActionBarWithNavController(navController, appBarConfiguration)
+//        binding.navView.setupWithNavController(navController)
+//    }
 
 }
 

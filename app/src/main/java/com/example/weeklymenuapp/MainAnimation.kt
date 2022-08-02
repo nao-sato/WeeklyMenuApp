@@ -17,7 +17,7 @@ class MainAnimation(
     f4: View,
     phone: View,
     greet: View,
-    navi: BottomNavigationView,
+//    navi: BottomNavigationView,
 ) {
 
     private val foodAppear = AnimatorSet().apply {
@@ -73,7 +73,7 @@ class MainAnimation(
         foodGather,
         scaleAllUp,
         Greet(greet).alphaDisappear,
-        ObjectAnimator.ofFloat(navi, "alpha", 0f, 1f)
+//        ObjectAnimator.ofFloat(navi, "alpha", 0f, 1f)
         )
 
 
